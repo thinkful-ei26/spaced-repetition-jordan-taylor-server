@@ -8,9 +8,9 @@ const router = express.Router();
 
 /* ========== POST/CREATE AN ITEM ========== */
 router.post('/', (req, res, next) => {
-
+console.log(req.body); 
   /***** Never trust users - validate input *****/
-  const requiredFields = ['username', 'password'];
+  const requiredFields = ["username", "password"];
   const missingField = requiredFields.find(field => !(field in req.body));
 
   if (missingField) {
@@ -79,15 +79,16 @@ router.post('/', (req, res, next) => {
   }
 
   // Username and password were validated as pre-trimmed
-  let { username, password, fullname = '' } = req.body;
-  fullname = fullname.trim();
+  let { username, password, firstName, lastName = '' } = req.body;
+//   fullname = fullname.trim();
 
   return User.hashPassword(password)
     .then(digest => {
       const newUser = {
         username,
         password: digest,
-        fullname
+        firstName, 
+        lastName
       };
       return User.create(newUser);
     })
