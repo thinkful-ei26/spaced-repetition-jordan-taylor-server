@@ -92,18 +92,20 @@ const questionsArray = [
 //     return (<div>`${object.question}`</div>);
 // })
 router.get('/', (req, res, next) => {
-    const userId = req.user.id;
+    // const userId = req.user.id;
     
-    questionsArray.find()
-    //   .sort('name')
-      .then(results => {
+    // questionsArray.find()
+    // //   .sort('name')
+    //   .then(results => {
         
-        res.json(results); 
+       return res.json({
+           data:questionsArray
+       }); 
         
-      })
-      .catch(err => {
-        next(err);
-      });
+    //   })
+    //   .catch(err => {
+    //     next(err);
+    //   });
 });
 
 module.exports = router;
