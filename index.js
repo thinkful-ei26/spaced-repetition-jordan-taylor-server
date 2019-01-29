@@ -33,16 +33,14 @@ app.use(
   })
 );
 
+// Protect endpoints using JWT Strategy
+const jwtAuth = passport.authenticate('jwt', { session: false, failWithError: true });
+
 // Mount routers
-<<<<<<< HEAD
 app.use('/api/users', usersRouter);
 app.use('/api', authRouter);
-app.use('/api/questions', jwtStrategy, questionsRouter);
+app.use('/api/questions', jwtAuth, questionsRouter);
 
-=======
-app.use('/users', usersRouter);
-app.use('/auth', authRouter);
->>>>>>> 50a2ec6d43c5273eb0f2be053064477093ebc2e1
 
 function runServer(port = PORT) {
   const server = app

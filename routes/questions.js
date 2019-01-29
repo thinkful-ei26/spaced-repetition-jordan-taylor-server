@@ -59,7 +59,7 @@ const questionsArray = [
     }, 
     {
     'question':'Is React a framework?',
-    'answer':'No, React is a framework'
+    'answer':'No, React is a library'
     },
     {
     'question':'What is React used for?',
@@ -94,7 +94,7 @@ router.get('/', (req, res, next) => {
     questionsArray.find({ userId })
     //   .sort('name')
       .then(results => {
-        res.json(results);
+        res.json(questionsArray);
       })
       .catch(err => {
         next(err);
