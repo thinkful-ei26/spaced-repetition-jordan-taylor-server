@@ -22,41 +22,73 @@ router.get('/', (req, res, next) => {
       });
 });
 
-router.put('/:id', (req, res, next) => {
-    const { id } = req.params;
-    const { currentQuestion } = req.body;
-    const userId = req.user.id;
+router.put('/', (req, res, next) => {
+  //get the answer that the user sent
+  let answer = req.body.answer
+  let userId = req.user.id;
+  console.log(answer)
   
-    /***** Never trust users - validate input *****/
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      const err = new Error('The `id` is not valid');
-      err.status = 400;
-      return next(err);
-    }
-  
-    if (!currentQuestion) {
-      const err = new Error('Missing `guessed Questions` in request body');
-      err.status = 400;
-      return next(err);
-    }
-  
-    const updateUser = {currentQuestion, userId };
-  
-    User.findByIdAndUpdate(id, updateUser, { new: true })
+  //compare that with the correct answer from the current question
+  User.find({_id:userId})
       .then(result => {
-        if (result) {
-          res.json(result);
-        } else {
-          next();
+        console.log(result[0].currentQuestion.head.value.answer)
+        if(result[0].currentQuestion.head.value.answer === answer){
+          console.log('Correct!')
+          return ({
+            data: {
+              current: result[0].currentQuestion.head.next
+            }
+          })
+        }  
+        else {
+          console.log('Incorrect')
         }
+      return res.json({}) 
       })
       .catch(err => {
-        if (err.code === 11000) {
-          err = new Error('Tag name already exists');
-          err.status = 400;
-        }
         next(err);
       });
-});
+
+  //update the linked list accordingly *v1, move current one over*
+
+
+})
+
+// router.put('/:id', (req, res, next) => {
+//     const { id } = req.params;
+//     const { currentQuestion } = req.body;
+//     const userId = req.user.id;
+  
+//     /***** Never trust users - validate input *****/
+//     if (!mongoose.Types.ObjectId.isValid(id)) {
+//       const err = new Error('The `id` is not valid');
+//       err.status = 400;
+//       return next(err);
+//     }
+  
+//     if (!currentQuestion) {
+//       const err = new Error('Missing `guessed Questions` in request body');
+//       err.status = 400;
+//       return next(err);
+//     }
+  
+//     const updateUser = {currentQuestion, userId };
+  
+//     User.findByIdAndUpdate(id, updateUser, { new: true })
+//       .then(result => {
+//         if (result) {
+//           res.json(result);
+//         } else {
+//           next();
+//         }
+//       })
+//       .catch(err => {
+//         if (err.code === 11000) {
+//           err = new Error('Tag name already exists');
+//           err.status = 400;
+//         }
+//         next(err);
+//       });
+// });
 
 module.exports = router;
