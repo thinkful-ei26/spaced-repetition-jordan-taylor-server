@@ -3,6 +3,7 @@
 const express = require('express');
 
 const User = require('../models/userschema');
+const { main } = require('../linkedList');
 
 const router = express.Router();
 
@@ -88,7 +89,8 @@ console.log(req.body);
         username,
         password: digest,
         firstName, 
-        lastName
+        lastName, 
+        currentQuestion:main()
       };
       return User.create(newUser);
     })

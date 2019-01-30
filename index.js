@@ -14,7 +14,6 @@ const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const questionsRouter = require('./routes/questions');
 
-
 const app = express();
 passport.use(localStrategy);
 passport.use(jwtStrategy);
