@@ -13,8 +13,7 @@ router.get('/', (req, res, next) => {
       .then(result => {
        return res.json({
            data:{
-               questions:result[0].questions, 
-               current:result[0].currentQuestion.head
+               current:result[0].currentQuestion.head.value    
            }
        });    
       })
