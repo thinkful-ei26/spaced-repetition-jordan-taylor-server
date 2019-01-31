@@ -73,6 +73,7 @@ class LinkedList {
         temp.next = new _Node(item, null);
       }
     }
+
     remove(item) {
       if (!this.head) {
         return null;
@@ -95,6 +96,7 @@ class LinkedList {
       }
       prevNode.next = currentNode.next;
     }
+
     find(item) {
       let currentNode = this.head;
       if (!this.head) {
@@ -108,20 +110,52 @@ class LinkedList {
         }
       }
       return currentNode;
-    }
+    }   
 }
-  
+let questions = null; 
+
 function main() {
-    let questions = new LinkedList();
+    questions = new LinkedList();
     allQuestions.forEach(item => {
       questions.insertFirst(item);
     });
     return questions;
 }
 
+// const questions = main();
+
 function getHead() {
   console.log(questions.head);
   return questions.head;
 }
 
-module.exports = { main, getHead };
+// function findLast(list) {
+//     let currNode = list.head;
+//     if (!list.head){
+//         return null;
+//     }
+//     while(currNode !== null) {
+//         if(currNode.next === null) {
+//             return currNode;
+//         }
+//         currNode = currNode.next;
+//     }
+// }
+
+function rotateValues(questions) {
+    console.log(questions);
+    console.log(questions.head.value);
+    // const currentHead = questions.head.value; 
+    // console.log(currentHead);
+    questions.head.next.value = questions.head.value;
+    console.log(questions.head.value);
+    
+    questions.insertLast;
+    // console.log(questions.find());
+    console.log(questions);
+    
+    return questions; 
+}
+
+
+module.exports = { main, getHead, rotateValues };

@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 const User = require('../models/userschema');
+const { rotateValues } = require('../linkedList');
 
 router.get('/', (req, res, next) => {
     const userId = req.user.id;
@@ -13,7 +14,7 @@ router.get('/', (req, res, next) => {
       .then(result => {
        return res.json({
         data:{	               
-          current:result[0].currentQuestion.head.value    	              
+          current:result[0].currentQuestion.head.value.question    	              
       }
        });    
       })
@@ -30,35 +31,39 @@ router.put('/current', (req, res, next) => {
   //compare that with the correct answer from the current question
   User.find({_id:userId})
       .then(result => {
-        if(result[0].currentQuestion.head.value.answer === answer){
+        if(result[0].currentQuestion.head.value.answer === answer) {
           result[0].currentQuestion.head.value.guessAttempts++
           result[0].currentQuestion.head.value.memoryStrength++
 
-          let currentHead = result[0].currentQuestion.head.value
-          let temp = result[0].currentQuestion.head.next.value
+          // let currentHead = result[0].currentQuestion.head.value
+          // let temp = result[0].currentQuestion.head.next.value
 
-          console.log('Correct!')
-          console.log(currentHead)
+          // console.log('Correct!')
+          // console.log(currentHead)
 
-          currentHead = temp
-          console.log(currentHead), result[0]
-        }  
+          // currentHead = temp
+          // console.log(currentHead), result[0]
+        }
+
         else {
           result[0].currentQuestion.head.value.memoryStrength--
           result[0].currentQuestion.head.value.guessAttempts++
 
-          let currentHead = result[0].currentQuestion.head.value
-          let temp = result[0].currentQuestion.head.next.value
+          // let currentHead = result[0].currentQuestion.head.value
+          // let temp = result[0].currentQuestion.head.next.value
 
-          console.log('Incorrect')
-          console.log(currentHead)
+          // console.log('Incorrect')
+          // console.log(currentHead)
 
-          currentHead = temp
-          console.log(currentHead), result[0]
+          // currentHead = temp
+          // console.log(currentHead), result[0]
         }
-        return res.json({
-          current:result[0].currentQuestion.head.next.value
-        }) 
+
+        // rotateValues(result[0].currentQuestion);
+        // console.log(result[0].currentQuestion.head.value);
+        return res.json(
+          rotateValues(result[0].currentQuestion)
+        ) 
       })
       .catch(err => {
         next(err);
