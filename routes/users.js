@@ -95,7 +95,7 @@ console.log(req.body);
       return User.create(newUser);
     })
     .then(result => {
-      return res.status(201).location(`/api/users/${result.id}`).json(result);
+      return res.status(201).location(`/auth/users/${result.id}`).json(result);
     })
     .catch(err => {
       if (err.code === 11000) {
@@ -105,5 +105,18 @@ console.log(req.body);
       next(err);
     });
 });
+
+router.get('/:id/current',(req,res) => {
+  console.log('id being sent:', req.params.id); 
+  // console.log(res);
+  const currentUserId = req.params.id;
+  User
+  .findById({_id:currentUserId})
+  .then(data => {
+    // console.log(data);
+    return res.json(data.currentQuestion.head)
+  })
+  .catch(err => console.log(err))
+})
 
 module.exports = router;
