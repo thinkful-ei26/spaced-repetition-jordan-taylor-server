@@ -106,4 +106,16 @@ console.log(req.body);
     });
 });
 
+router.get('/:id/current',(req,res) => {
+  console.log('id being sent:', req.params.id); 
+  // console.log(res);
+  const currentUserId = req.params.id;
+  User
+  .findById({_id:currentUserId})
+  .then(data => {
+    // console.log(data);
+    return res.json(data.currentQuestion.head)
+  })
+  .catch(err => console.log(err))
+})
 module.exports = router;
