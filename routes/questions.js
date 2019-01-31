@@ -12,9 +12,8 @@ router.get('/', (req, res, next) => {
     User.find({_id:userId})
       .then(result => {
        return res.json({
-           data:{
-               current:result[0].currentQuestion.head.value    
-           }
+               current:result[0].currentQuestion.head.value,
+               next:result[0].currentQuestion.head.next.value
        });    
       })
       .catch(err => {
@@ -22,41 +21,51 @@ router.get('/', (req, res, next) => {
       });
 });
 
-router.put('/:id', (req, res, next) => {
-    const { id } = req.params;
-    const { currentQuestion } = req.body;
-    const userId = req.user.id;
+router.put('/current', (req, res, next) => {
+  //get the answer that the user sent
+  let answer = req.body.answer
+  let userId = req.user.id;
   
-    /***** Never trust users - validate input *****/
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      const err = new Error('The `id` is not valid');
-      err.status = 400;
-      return next(err);
-    }
-  
-    if (!currentQuestion) {
-      const err = new Error('Missing `guessed Questions` in request body');
-      err.status = 400;
-      return next(err);
-    }
-  
-    const updateUser = {currentQuestion, userId };
-  
-    User.findByIdAndUpdate(id, updateUser, { new: true })
+  //compare that with the correct answer from the current question
+  User.find({_id:userId})
       .then(result => {
-        if (result) {
-          res.json(result);
-        } else {
-          next();
+        if(result[0].currentQuestion.head.value.answer === answer){
+          result[0].currentQuestion.head.value.guessAttempts++
+          result[0].currentQuestion.head.value.memoryStrength++
+
+          let currentHead = result[0].currentQuestion.head.value
+          let temp = result[0].currentQuestion.head.next.value
+
+          console.log('Correct!')
+          console.log(currentHead)
+
+          currentHead = temp
+          console.log(currentHead), result[0]
+        }  
+        else {
+          result[0].currentQuestion.head.value.memoryStrength--
+          result[0].currentQuestion.head.value.guessAttempts++
+
+          let currentHead = result[0].currentQuestion.head.value
+          let temp = result[0].currentQuestion.head.next.value
+
+          console.log('Incorrect')
+          console.log(currentHead)
+
+          currentHead = temp
+          console.log(currentHead), result[0]
         }
+        return res.json({
+          current:result[0].currentQuestion.head.next.value
+        }) 
       })
       .catch(err => {
-        if (err.code === 11000) {
-          err = new Error('Tag name already exists');
-          err.status = 400;
-        }
         next(err);
       });
-});
+
+  //update the linked list accordingly *v1, move current one over*
+
+
+})
 
 module.exports = router;

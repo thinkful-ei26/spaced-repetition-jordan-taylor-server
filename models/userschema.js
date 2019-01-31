@@ -5,23 +5,13 @@ const mongoose = require('mongoose');
 
 const questionsArray = require('../allQuestions');
 
-const defaultQuestionState = {
-  question:String, 
-  answer:String, 
-  memoryStrength:Number, 
-  next:Number, 
-  correct:Boolean, 
-  guessed:Boolean
-};
-
 // ===== Define UserSchema & UserModel =====
 const schema = new mongoose.Schema({
   firstName: { type: String, default: '' },
   lastName: { type: String, default: '' },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true }, 
-  questions: {type: Array, default: questionsArray }, 
-  currentQuestion:{ type:Object }
+  currentQuestion:{ type:Object },
 });
 
 // Transform output during `res.json(data)`, `console.log(data)` etc.
