@@ -12,8 +12,9 @@ router.get('/', (req, res, next) => {
     User.find({_id:userId})
       .then(result => {
        return res.json({
-               current:result[0].currentQuestion.head.value,
-               next:result[0].currentQuestion.head.next.value
+        data:{	               
+          current:result[0].currentQuestion.head.value    	              
+      }
        });    
       })
       .catch(err => {
