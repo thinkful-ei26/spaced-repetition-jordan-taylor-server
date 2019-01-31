@@ -90,7 +90,7 @@ console.log(req.body);
         password: digest,
         firstName, 
         lastName, 
-        currentQuestion:main(),
+        // currentQuestion,
       };
       return User.create(newUser);
     })

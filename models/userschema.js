@@ -11,7 +11,13 @@ const schema = new mongoose.Schema({
   lastName: { type: String, default: '' },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true }, 
+<<<<<<< HEAD
   currentQuestion:{ type:Object, default: questionsArray  },
+=======
+  head: { type: Number, default: 0 },
+  //an array of all the questions
+  questions:{ type: Object, default: questionsArray.questions },
+>>>>>>> 8c9e20d740cefc46d961c0cda4e2ad8028f1c802
 });
 
 // Transform output during `res.json(data)`, `console.log(data)` etc.
