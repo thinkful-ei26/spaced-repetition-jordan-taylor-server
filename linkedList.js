@@ -119,4 +119,9 @@ function main() {
     return questions;
 }
 
-module.exports = { main };
+function getHead() {
+  console.log(questions.head);
+  return questions.head;
+}
+
+module.exports = { main, getHead };

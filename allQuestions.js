@@ -2,138 +2,121 @@ const questionsArray = [
     {
     "question":"gast",
     "answer":"stomach", 
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttemtps":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"cardi",
     "answer":"heard",    
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"megal", 
     "answer":"enlarged",   
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number, 
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1, 
+    "next": 1
     },
     {
     "question":"itis",
     "answer": "inflammation",   
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number, 
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1, 
+    "next": 1
     },
     {
     "question":"dermat",
     "answer":"skin",    
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number,
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1,
     },
     {
     "question":"cerebr",
     "answer":"brain",    
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"path",
     "answer":"disease",   
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"enter",
     "answer": "intestines",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"aden",
     "answer": "gland",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     }, 
     {
     "question":"angi",
     "answer": "vessel",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"oma",
     "answer": "tumor",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"nephr",
     "answer": "kidney",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     }, 
     {
     "question":"hepat",
     "answer": "liver",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     }, 
     {
     "question":"athr",
     "answer":"joint",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"blephar",
     "answer":"eyelid",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"ologist",
     "answer": "specialist",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number,
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1,
+    "next": 1
     },
     {
     "question":"malacia",
     "answer":"soft",
-    "correct":false, 
-    "guessed":false,
-    "memoryStrength":Number, 
-    "next":Number
+    "guessAttempts":0,
+    "memoryStrength": 1, 
+    "next": 1
     },
 ]
 
