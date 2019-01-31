@@ -11,7 +11,9 @@ const schema = new mongoose.Schema({
   lastName: { type: String, default: '' },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true }, 
-  currentQuestion:{ type:Object },
+  head: { type: Number, default: 0 },
+  //an array of all the questions
+  questions:{ type: Object, default: questionsArray.questions },
 });
 
 // Transform output during `res.json(data)`, `console.log(data)` etc.
