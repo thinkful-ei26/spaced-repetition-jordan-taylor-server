@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
   lastName: { type: String, default: '' },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true }, 
-  currentQuestion:{ type:Object },
+  currentQuestion:{ type:Object, default: questionsArray  },
 });
 
 // Transform output during `res.json(data)`, `console.log(data)` etc.
