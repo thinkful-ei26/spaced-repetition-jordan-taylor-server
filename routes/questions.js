@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
       .then(result => {
        return res.json({
                current:result[0].currentQuestion.head.value,
-              //  next:result[0].currentQuestion.head.next.value
+               next:result[0].currentQuestion.head.next.value
        });    
       })
       .catch(err => {
@@ -55,7 +55,6 @@ router.put('/current', (req, res, next) => {
           currentHead = temp
           console.log(currentHead), result[0]
         }
-
         return res.json({
           current:result[0].currentQuestion.head.next.value
         }) 
