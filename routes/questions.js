@@ -30,8 +30,9 @@ router.get('/', (req, res, next) => {
 
   User.findOne({_id:userId})
     .then(user => {
-      console.log('user on get:', user)
-     return res.json(user.questions[user.head]);    
+      // console.log('user on get:', user)
+      console.log('user questions:', user.questions);
+     return res.json(user.questions);    
     })
     .catch(err => {
       next(err);

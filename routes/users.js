@@ -113,8 +113,8 @@ router.get('/:id/current',(req,res) => {
   User
   .findById({_id:currentUserId})
   .then(data => {
-    // console.log(data);
-    return res.json(data.currentQuestion.head)
+    console.log(data);
+    return res.json(data.questions[data.head])
   })
   .catch(err => console.log(err))
 })
