@@ -13,7 +13,7 @@ const schema = new mongoose.Schema({
   password: { type: String, required: true }, 
   head: { type: Number, default: 0 },
   //an array of all the questions
-  questions:{ type: Object, default: questionsArray.questions },
+  questions:{ type: Array, default: questionsArray.questions },
 });
 
 // Transform output during `res.json(data)`, `console.log(data)` etc.
