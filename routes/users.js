@@ -105,6 +105,7 @@ console.log(req.body);
       next(err);
     });
 });
+let i=0; 
 
 router.get('/:id/current',(req,res) => {
   console.log('id being sent:', req.params.id); 
@@ -114,7 +115,10 @@ router.get('/:id/current',(req,res) => {
   .findById({_id:currentUserId})
   .then(data => {
     console.log(data);
-    return res.json(data.questions[data.head])
+    if(i < data.questions.length-1){
+      i++; 
+    } else if(i = data.questions.length){ i=0; };
+    return res.json(data.questions[i])
   })
   .catch(err => console.log(err))
 })
