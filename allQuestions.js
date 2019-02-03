@@ -118,7 +118,7 @@ const user = {
             "answer":"soft",
             "score":0,
             "m": 1, 
-            "next": 0
+            "next": 17
             }
     ]
 }

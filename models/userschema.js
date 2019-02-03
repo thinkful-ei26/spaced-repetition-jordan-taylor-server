@@ -14,6 +14,7 @@ const schema = new mongoose.Schema({
   head: { type: Number, default: 0 },
   //an array of all the questions
   questions:{ type: Array, default: questionsArray.questions },
+  masteredWords: {type:Array, default:[]}
 });
 
 // Transform output during `res.json(data)`, `console.log(data)` etc.
