@@ -39,71 +39,29 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// router.put('/current', (req, res) => {
-//   console.log(req.user)
-
-//   const userId = req.user.id;
-//   let correctAnswer = '';
-//   let answeredCorrectly = false; 
-
-//   User.findOne({_id:userId})
-//     .then(user => {
-//       // console.log('user:', user)
-//       const current = user.questions[user.head];
-//       correctAnswer = current.answer;
-
-//       if (current.answer === req.body.answer) {
-//         answeredCorrectly = true;
-//         current.score += 1;
-//       }
-
-//       user.head = user.head + 1;
-//       console.log('user:', user)
-//       return user.save();    
-//     })
-//     .then(() => res.json({answeredCorrectly, correctAnswer}))
-// })
-
-
-
-
-
 router.put('/current', (req, res) => {
 
   const userId = req.user.id;
   let correctAnswer = '';
   let answeredCorrectly = false; 
   let addingMasteredWord = '';
+  let attemptsForTheCurrentWord = 0;
+  let numberOfCorrectGuessesForCurrentWord = 0;
   console.log('request body', req.body);
   User.findOne({_id:userId})
     .then(user => {
-      // user.questions =[ { text: 'angi', answer: 'vessel', score: 0, m: 7, next: 1 },
-      // { text: 'oma', answer: 'tumor', score: 0, m: 7, next: 2 },
-      // { text: 'nephr', answer: 'kidney', score: 0, m: 7, next: 3 },
-      // { text: 'hepat', answer: 'liver', score: 0, m: 7, next: 4 },
-      // { text: 'athr', answer: 'joint', score: 0, m: 7, next: 5 },
-      // { text: 'blephar', answer: 'eyelid', score: 0, m: 7, next: 6 },
-      // { text: 'ologist', answer: 'specialist', score: 0, m: 7, next: 7 },
-      // { text: 'malacia', answer: 'soft', score: 0, m: 7, next: 8 },
-      // { text: 'aden', answer: 'gland', score: 0, m: 8, next: 9 } ];
+      // user.questions = allQuestions.questions;
       // user.head = 0;
-  //     let adjustedArray = user.questions.map(question => {
-  //       let i=0; 
-  //       if(question === null){
-  //         user.questions.splice(i,1);
-  //       }
-  //       if(question.next < i ) {
-  //         question.next = question.next -1;
-  //       }
-  //       question.next = question.next -1; 
-  //       if(question.m <= i/2 ) {
-  //         question.m = question.m-1;
-  //       }
-  //       return question;
-  //     });
+      // user.masteredWords = [];
+  attemptsForTheCurrentWord = user.questions[user.head].attempts +1;
+  user.questions[user.head].attempts = attemptsForTheCurrentWord;
+  
   if(user.questions[user.head].answer === req.body.answer){
     correctAnswer = user.questions[user.head].answer; 
     answeredCorrectly = true;
+    numberOfCorrectGuessesForCurrentWord = user.questions[user.head].score +1; 
+    user.questions[user.head].score = numberOfCorrectGuessesForCurrentWord;
+    
   }
    console.log(user.questions[user.head].m +1); 
    console.log('length:', parseInt(user.questions.length));
@@ -114,11 +72,11 @@ router.put('/current', (req, res) => {
       const masteredWordsIndex = user.masteredWords.length;  
       user.masteredWords.set(masteredWordsIndex, addingMasteredWord);
       console.log(index);  
-      // user.questions.splice(index,1); 
+
       
 
       user.questions.shift();
-      // user.questions.pop();
+
       console.log('after removing null values:', user.questions);
       let length = user.questions.length;
       console.log('"length" value:', length);
@@ -153,7 +111,7 @@ router.put('/current', (req, res) => {
         current.m = current.m *2;  
         
          
-         tempObj1.m*2;
+        tempObj1.m*2;
         tempObj1.next += tempObj1.m;
         for(let i=1; i<=current.m; i++) {
           console.log(user.questions[i]);
@@ -165,21 +123,14 @@ router.put('/current', (req, res) => {
         user.questions.set(tempObj1.m, tempObj1);
       }
 
-    // else if (current.answer !== req.body.answer) {
-    //     current.m = 1; 
-    //     if(current.score > 0) {
-    //         current.score -= 1;
-    //     }
-    //     user.questions[current.next].next-1;
-    //     current.next += current.m; 
-    // }
+      else{user.questions[0].m = 1};
     console.log('user after conditional:', user);
-
+    
    
     return user.save();
         
     })
-    .then(() => res.json({answeredCorrectly, correctAnswer, addingMasteredWord}))
+    .then(() => res.json({answeredCorrectly, correctAnswer, addingMasteredWord, attemptsForTheCurrentWord, numberOfCorrectGuessesForCurrentWord}))
 })
 
 module.exports = router;

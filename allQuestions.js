@@ -5,6 +5,7 @@ const user = {
             "text":"gast",
             "answer":"stomach", 
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 1
             },
@@ -12,6 +13,7 @@ const user = {
             "text":"cardi",
             "answer":"heard",    
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 2
             },
@@ -19,6 +21,7 @@ const user = {
             "text":"megal", 
             "answer":"enlarged",   
             "score":0,
+            "attempts":0,
             "m": 1, 
             "next": 3
             },
@@ -26,6 +29,7 @@ const user = {
             "text":"itis",
             "answer": "inflammation",   
             "score":0,
+            "attempts":0,
             "m": 1, 
             "next": 4
             },
@@ -33,6 +37,7 @@ const user = {
             "text":"dermat",
             "answer":"skin",    
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 5,
             },
@@ -40,6 +45,7 @@ const user = {
             "text":"cerebr",
             "answer":"brain",    
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 6
             },
@@ -47,6 +53,7 @@ const user = {
             "text":"path",
             "answer":"disease",   
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 7
             },
@@ -54,6 +61,7 @@ const user = {
             "text":"enter",
             "answer": "intestines",
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 8
             },
@@ -61,6 +69,7 @@ const user = {
             "text":"aden",
             "answer": "gland",
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 9
             }, 
@@ -68,6 +77,7 @@ const user = {
             "text":"angi",
             "answer": "vessel",
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 10
             },
@@ -75,6 +85,7 @@ const user = {
             "text":"oma",
             "answer": "tumor",
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 11
             },
@@ -82,6 +93,7 @@ const user = {
             "text":"nephr",
             "answer": "kidney",
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 12
             }, 
@@ -89,6 +101,7 @@ const user = {
             "text":"hepat",
             "answer": "liver",
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 13
             }, 
@@ -96,6 +109,7 @@ const user = {
             "text":"athr",
             "answer":"joint",
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 14
             },
@@ -103,6 +117,7 @@ const user = {
             "text":"blephar",
             "answer":"eyelid",
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 15
             },
@@ -110,6 +125,7 @@ const user = {
             "text":"ologist",
             "answer": "specialist",
             "score":0,
+            "attempts":0,
             "m": 1,
             "next": 16
             },
@@ -117,6 +133,7 @@ const user = {
             "text":"malacia",
             "answer":"soft",
             "score":0,
+            "attempts":0,
             "m": 1, 
             "next": 17
             }
