@@ -3,7 +3,7 @@
 const express = require('express');
 
 const User = require('../models/userschema');
-const { main, getHead } = require('../linkedList');
+
 
 const router = express.Router();
 

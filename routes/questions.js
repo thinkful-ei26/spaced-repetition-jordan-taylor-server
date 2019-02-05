@@ -45,6 +45,7 @@ router.put('/current', (req, res) => {
   let correctAnswer = '';
   let answeredCorrectly = false; 
   let addingMasteredWord = '';
+  let allMasteredWords = [];
   let attemptsForTheCurrentWord = 0;
   let numberOfCorrectGuessesForCurrentWord = 0;
   console.log('request body', req.body);
@@ -53,14 +54,14 @@ router.put('/current', (req, res) => {
       // user.questions = allQuestions.questions;
       // user.head = 0;
       // user.masteredWords = [];
-  attemptsForTheCurrentWord = user.questions[user.head].attempts +1;
-  user.questions[user.head].attempts = attemptsForTheCurrentWord;
+  user.questions[user.head].attempts = user.questions[user.head].attempts +1;
+  user.questions.set(0, user.questions[user.head]);
   
   if(user.questions[user.head].answer === req.body.answer){
     correctAnswer = user.questions[user.head].answer; 
     answeredCorrectly = true;
-    numberOfCorrectGuessesForCurrentWord = user.questions[user.head].score +1; 
-    user.questions[user.head].score = numberOfCorrectGuessesForCurrentWord;
+    user.questions[user.head].score = user.questions[user.head].score +1; 
+    user.questions.set(0, user.questions[user.head]);
     
   }
    console.log(user.questions[user.head].m +1); 
@@ -69,8 +70,7 @@ router.put('/current', (req, res) => {
       let index = user.questions.indexOf(undefined);
       addingMasteredWord = user.questions[user.head].text; 
      
-      const masteredWordsIndex = user.masteredWords.length;  
-      user.masteredWords.set(masteredWordsIndex, addingMasteredWord);
+      user.masteredWords.push(addingMasteredWord);
       console.log(index);  
 
       
@@ -125,12 +125,13 @@ router.put('/current', (req, res) => {
 
       else{user.questions[0].m = 1};
     console.log('user after conditional:', user);
-    
-   
+    allMasteredWords = user.masteredWords;
+    numberOfCorrectGuessesForCurrentWord = user.questions[0].score;
+    attemptsForTheCurrentWord = user.questions[0].attempts;
     return user.save();
         
     })
-    .then(() => res.json({answeredCorrectly, correctAnswer, addingMasteredWord, attemptsForTheCurrentWord, numberOfCorrectGuessesForCurrentWord}))
+    .then(() => res.json({answeredCorrectly, correctAnswer, allMasteredWords, attemptsForTheCurrentWord, numberOfCorrectGuessesForCurrentWord}))
 })
 
 module.exports = router;
