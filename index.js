@@ -8,6 +8,7 @@ const passport = require('passport');
 const localStrategy = require('./passport/local');
 const jwtStrategy = require('./passport/jwt');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 
@@ -17,6 +18,7 @@ const authRouter = require('./routes/auth');
 const questionsRouter = require('./routes/questions');
 
 const app = express();
+mongoose.Promise = global.Promise;
 
 app.all('/*', function(req, res, next) {
   // CORS headers
@@ -57,6 +59,7 @@ app.use(
 const jwtAuth = passport.authenticate('jwt', { session: false, failWithError: true });
 
 // Mount routers
+app.use('/', index);
 app.use('/auth/users', usersRouter);
 app.use('/auth/login', authRouter);
 app.use('/api/questions', jwtAuth, questionsRouter);
